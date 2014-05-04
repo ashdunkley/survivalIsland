@@ -16,14 +16,25 @@ public class Inventory : MonoBehaviour {
 	private bool draggingItem;
 	private Item draggedItem;
 	private int prevIndex;
+	private float health;
+	private float energy;
+	private float food;
+	private float drink;
+	private PlayerHealth playerhealth;
 
 	void Start () 
 	{
+
+		playerhealth = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerHealth> ();
+
 		for(int i = 0; i < (slotX * slotY); i++) 
 		{
 			slots.Add (new Item());
 			inventory.Add (new Item());
+
 		}
+
+
 
 
 		database = GameObject.FindGameObjectWithTag("Item Database").GetComponent<ItemDatabase> ();
@@ -31,11 +42,14 @@ public class Inventory : MonoBehaviour {
 
 		AddItem (0);
 		AddItem (0);
+		AddItem (1);
 
 	}
 
 	void Update()
 	{
+
+		
 		if (Input.GetButtonDown ("Inventory"))
 		{
 			showInventory = !showInventory;
@@ -100,6 +114,15 @@ public class Inventory : MonoBehaviour {
 							draggingItem = false;
 							draggedItem = null;
 						}
+
+						if (inventory[i].itemType == Item.ItemType.Consumable && e.button == 1)
+						{
+
+							UseConsumable (inventory[i]);
+							inventory[i] = new Item();
+
+						}
+
 						
 						
 					}
@@ -180,5 +203,16 @@ public class Inventory : MonoBehaviour {
 	{
 		tooltip = item.itemName+ "\n\n" + item.itemDesc;
 		return tooltip;
+	}
+
+	private void UseConsumable(Item item)
+
+	{
+
+		playerhealth.health = playerhealth.health + item.itemStat1;
+		playerhealth.food = playerhealth.food + item.itemStat2;
+		playerhealth.energy = playerhealth.energy + item.itemStat3;
+
+
 	}
 }

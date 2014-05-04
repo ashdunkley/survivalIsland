@@ -81,7 +81,7 @@ Material:
       data:
         first:
           name: _GerstnerIntensity
-        second: -.25
+        second: 0
       data:
         first:
           name: _WaveScale
@@ -110,7 +110,7 @@ Material:
       data:
         first:
           name: _DistortParams
-        second: {r: -2.79999995, g: -.5, b: 0, a: 0}
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _InvFadeParemeter

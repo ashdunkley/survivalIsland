@@ -9,11 +9,14 @@ public class Item {
 	public int itemID;
 	public string itemDesc;
 	public Texture2D itemIcon;
-	public int itemStat1;
-	public int itemStat2;
-	public int itemStat3;
+	public float itemStat1;
+	public float itemStat2;
+	public float itemStat3;
 	public ItemType itemType;
 	public ItemType2 itemType2;
+
+
+
 
 	public enum ItemType
 	{
@@ -32,7 +35,7 @@ public class Item {
 		None
 	}
 
-	public Item(string name, int ID, string desc, int s1, int s2, int s3, ItemType type, ItemType2 type2)
+	public Item(string name, int ID, string desc, float s1, float s2, float s3, ItemType type, ItemType2 type2)
 	{
 		itemName = name;
 		itemID = ID;
@@ -43,11 +46,13 @@ public class Item {
 		itemStat3 = s3;
 		itemType = type;
 		itemType2 = type2;
-		
+
 	}
 
 	public Item()
 	{
 
 	}
+
+
 }

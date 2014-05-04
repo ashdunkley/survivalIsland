@@ -16,7 +16,9 @@
 
 - Inventory GUI;
 
-- Health System Started;
+- Health System (includes methods for hunger, thirst and lack of energy);
+
+- Consumable System added;
 
 
 			###############

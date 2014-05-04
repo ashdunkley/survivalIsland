@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour {
 	//variables
 	public float speed = 6.0f;
 	public float jumpSpeed = 8.0f;
-	public float gravity = 20.0f;
+	public float gravity;
 	private Vector3 moveDirection = Vector3.zero;
 	public float runSpeed = 10.0f;
 	public float swimSpeed = 6.0f;
 	public float swimUpSpeed = 2.0f;
+	public float waterGravity = 7.5f;
+	public float waterSpeed = 4.0f;
 
+	
 	private void FixedUpdate () 
 	{
 		CharacterController controller = GetComponent<CharacterController>();
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 						
 			moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 			moveDirection = transform.TransformDirection (moveDirection);
+			gravity = 20.0f;
 
 			
 
@@ -36,18 +40,21 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetButton("Jump"))
 				moveDirection.y = jumpSpeed;
 
+
 		}
 
+		//water movement
 		else if (transform.position.y < 75) 
 		{
 			moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 			moveDirection = transform.TransformDirection (moveDirection);
+			gravity = waterGravity;
 
 			//Swimming across
 			if (Input.GetButton ("Sprint"))
 				moveDirection *= swimSpeed;
 			
-			else moveDirection *= speed;
+			else moveDirection *= waterSpeed;
 			
 			
 			//Swimming up
@@ -56,14 +63,11 @@ public class PlayerController : MonoBehaviour {
 			    moveDirection.y += swimUpSpeed;
 
 			}
+		}				
 
-		
-		
-		
-	}
-			
-		controller.Move (moveDirection * Time.deltaTime);
-		
+	
 		moveDirection.y -= gravity * Time.deltaTime;
+		controller.Move (moveDirection * Time.deltaTime);
 	}
+
 }

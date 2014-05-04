@@ -82,6 +82,15 @@ public class GameTime : MonoBehaviour {
 		{
 			_tod = GameTime.TimeOfDay.SunRise;
 			blendSky ();
+			float i = 0f;
+			for(int j = 0; j < 10; j++)
+
+			{
+				Sun.intensity = i;
+			}
+
+			i = i +0.1f;
+		
 		}
 
 		else if
@@ -90,8 +99,13 @@ public class GameTime : MonoBehaviour {
 		{
 			_tod = GameTime.TimeOfDay.SunSet;
 			blendSky();
-			Sun.intensity = 0;
-
+			int i = 10;
+			for(int j = 0; j < 5; j++)
+				
+			{
+				Sun.intensity = (i / 10);
+				i--;
+			}
 		}
 		else
 		{
